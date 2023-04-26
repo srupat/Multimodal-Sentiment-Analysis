@@ -11,8 +11,8 @@ nltk.download('stopwords') #to remove stopwords
 nltk.download('vader_lexicon')
  
 #most of the text on the net is of the encoding 'utf-8'
-text = open('read.txt',encoding='utf-8').read()
-
+text = open('textRead.txt',encoding='utf-8').read()
+#print(text)
 #convert to lower case
 lower_case = text.lower()
 
@@ -37,7 +37,7 @@ with open('emotions.txt','r') as file:
     #replacing the new line in between 2 lines with nothing, replacing commas with nothing, replacing         apostrophe('') with nothing
     clear_line = line.replace("\n",'').replace(",",'').replace("'",'').strip()
 
-    #word and emotion are 2 variables where the word and the emotion from repective line is stored
+    #word and emotion are 2 variables where the word and the emotion from respective line is stored
     word, emotion = clear_line.split(':')
 
     if word in final_words:
