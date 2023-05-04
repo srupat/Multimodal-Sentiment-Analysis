@@ -5,14 +5,31 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import speech_recognition as sr
+recognizer = sr.Recognizer()
 
 nltk.download('punkt') #to tokenize 
 nltk.download('stopwords') #to remove stopwords
 nltk.download('vader_lexicon')
- 
-#most of the text on the net is of the encoding 'utf-8'
-text = open('textRead.txt',encoding='utf-8').read()
-#print(text) 
+
+
+#record audio
+with sr.Microphone as source:
+    print('Clearing background noise...')
+    recognizer.adjust_for_ambient_noise(source,duration=1)
+    print('Waiting for your message...')
+    recordedAudio = recognizer.listen(source)
+    print('Done recording!')
+
+#exception handling to throw errors if program goes wrong and to print the message using google language recognizer 
+try:
+    print('Printing the message...')
+    text = recognizer.recognize_google(recordedAudio,language='en-US')
+    print('Your message:{}'.format(text))
+except Exception as ex:
+    print(ex)
+
 #convert to lower case
 lower_case = text.lower()
 

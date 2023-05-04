@@ -16,7 +16,7 @@ nltk.download('vader_lexicon')
 import pytesseract as pyt
 import cv2
 
-img = cv2.imread("titanic.jpg")
+img = cv2.imread("images/titanic.jpg")
 
 pyt.pytesseract.tesseract_cmd = "C:\\Users\\sruja\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe"
 
@@ -69,8 +69,8 @@ w=Counter(emotion_list)
 
 def sentiment_analyse(sentiment_text):
   score = SentimentIntensityAnalyzer().polarity_scores(sentiment_text)
-  sentiment = [score['pos'],score['neg']]
-  sen_labels = ['Positive','Negative']
+  sentiment = [score['pos'],score['neg'],score['neu']]
+  sen_labels = ['Positive','Negative','Neutral']
   neg = score['neg']
   pos = score['pos']
   if neg > pos:
@@ -80,7 +80,7 @@ def sentiment_analyse(sentiment_text):
   else:
     print("Neutral sentiment") 
   plt.axis("equal")
-  plt.pie(sentiment,labels=sen_labels) 
+  plt.pie(sentiment,labels=sen_labels,autopct='%.2f') 
   plt.savefig('graph.png')
   plt.show()    
 
