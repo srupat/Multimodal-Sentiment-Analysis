@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import speech_recognition as sr
+import pyttsx3
 recognizer = sr.Recognizer()
 
 nltk.download('punkt') #to tokenize 
@@ -15,12 +16,13 @@ nltk.download('vader_lexicon')
 
 
 #record audio
-with sr.Microphone as source:
-    print('Clearing background noise...')
-    recognizer.adjust_for_ambient_noise(source,duration=1)
-    print('Waiting for your message...')
-    recordedAudio = recognizer.listen(source)
-    print('Done recording!')
+with sr.Microphone(device_index=1) as source:
+  print('Clearing background noise...')
+  recognizer.adjust_for_ambient_noise(source,duration=1)
+  print('Waiting for your message...')
+  recordedAudio = recognizer.listen(source)
+  print('Done recording!')
+  # source.close()
 
 #exception handling to throw errors if program goes wrong and to print the message using google language recognizer 
 try:

@@ -326,6 +326,8 @@
  'phobic': 'fearful',
  'playful': 'happy',
  'pleased': 'happy',
+ 'pleasant': 'happy',
+ 'nice': 'good',
  'powerless': 'powerless',
  'pressured': 'burdened',
  'privileged': 'entitled',
