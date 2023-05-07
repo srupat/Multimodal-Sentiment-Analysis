@@ -18,7 +18,7 @@ nltk.download('vader_lexicon')
 #record audio
 with sr.Microphone(device_index=1) as source:
   print('Clearing background noise...')
-  recognizer.adjust_for_ambient_noise(source,duration=1)
+  recognizer.adjust_for_ambient_noise(source,duration=3)
   print('Waiting for your message...')
   recordedAudio = recognizer.listen(source)
   print('Done recording!')
@@ -68,6 +68,8 @@ w=Counter(emotion_list)
 
 def sentiment_analyse(sentiment_text):
   score = SentimentIntensityAnalyzer().polarity_scores(sentiment_text)
+  sentiment = [score['pos'],score['neg'],score['neu']]
+  sen_labels = ['Positive','Negative','Neutral']
   neg = score['neg']
   pos = score['pos']
   if neg > pos:
@@ -75,22 +77,26 @@ def sentiment_analyse(sentiment_text):
   elif pos>neg:
     print("Positive sentiment")
   else:
-    print("Neutral sentiment")    
+    print("Neutral sentiment") 
+  plt.axis("equal")
+  plt.pie(sentiment,labels=sen_labels,autopct='%.2f') 
+  plt.savefig('graph.png')
+  plt.show()    
 
 sentiment_analyse(cleaned_text)
 
 
-#making a subplot
-fig,ax1=plt.subplots()
+# #making a subplot
+# fig,ax1=plt.subplots()
 
-#bar graph generation with keys(emotions) on x axis and values(count) on y axis
-ax1.bar(w.keys(),w.values())
+# #bar graph generation with keys(emotions) on x axis and values(count) on y axis
+# ax1.bar(w.keys(),w.values())
 
-#slanting emotions below x axis
-fig.autofmt_xdate()
+# #slanting emotions below x axis
+# fig.autofmt_xdate()
 
-#save to graph.png file
-plt.savefig('graph.png')
+# #save to graph.png file
+# plt.savefig('graph.png')
 
-#show graph on screen
-plt.show()
+# #show graph on screen
+# plt.show()
