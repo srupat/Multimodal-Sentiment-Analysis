@@ -69,8 +69,8 @@ w=Counter(emotion_list)
 
 def sentiment_analyse(sentiment_text):
   score = SentimentIntensityAnalyzer().polarity_scores(sentiment_text)
-  sentiment = [score['pos'],score['neg'],score['neu']]
-  sen_labels = ['Positive','Negative','Neutral']
+  sentiment = [score['pos'],score['neg']]
+  sen_labels = ['Positive','Negative']
   neg = score['neg']
   pos = score['pos']
   if neg > pos:
