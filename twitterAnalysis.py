@@ -25,7 +25,7 @@ def get_tweets(query, count):
 
     # Fetch tweets
     tweets = []
-    fetched_tweets = api.search(q=query, count=count)
+    fetched_tweets = api.search_tweets(q=query, count=count)
     for tweet in fetched_tweets:
         tweets.append(tweet.text)
     
