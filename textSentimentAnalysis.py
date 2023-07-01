@@ -16,6 +16,8 @@ text = open('textRead.txt',encoding='utf-8').read()
 #convert to lower case
 lower_case = text.lower()
 
+#this is a useless comment
+
 #remove all punctuations
 cleaned_text = lower_case.translate(str.maketrans('','',string.punctuation))
 
